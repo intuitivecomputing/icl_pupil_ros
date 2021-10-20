@@ -1,0 +1,4 @@
+<launch>
+    <!-- Bring up pupil gaze tracker (user fpv)-->
+    <node name="gaze_tracker_node" pkg="icl_pupil_ros" type="gaze_tracker.py" output="screen" />
+</launch>

@@ -102,16 +102,17 @@ class GazeTracker:
             self.gaze_pub.publish(gaze_msg)
 
         if fpv_img is not None:
-            if self.visualize_gaze:
+            if self.visualize_gaze and gaze_point is not None:
                 cv2.circle(
                     fpv_img, (gaze_point.x, gaze_point.y), 40, (0, 0, 255), 4
                 )
             try:
-                self.fpv_img_pub.publish(
-                    self.cv_bridge.cv2_to_compressed_imgmsg(
-                        fpv_img, dst_format="jpg"
-                    )
+                image_msg = self.cv_bridge.cv2_to_compressed_imgmsg(
+                    fpv_img, dst_format="jpg"
                 )
+                image_msg.header = Header()
+                image_msg.header.stamp = rospy.Time.now()
+                self.fpv_img_pub.publish(image_msg)
             except CvBridgeError as e:
                 rospy.logerr(e)
 
