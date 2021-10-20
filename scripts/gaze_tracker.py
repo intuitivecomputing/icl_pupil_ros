@@ -31,10 +31,12 @@ class GazeTracker:
         )
 
     def __enter__(self):
+        rospy.loginfo("Starting ndsi connection...")
         self.network.start()
         return self
 
     def __exit__(self, *args):
+        rospy.loginfo("Stopping ndsi connection...")
         self.network.stop()
 
     def network_event_callback(self, network, event):
