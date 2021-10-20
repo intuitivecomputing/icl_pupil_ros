@@ -14,8 +14,8 @@ from geometry_msgs.msg import Point, PointStamped
 
 
 class GazeTracker:
-    def __init__(self, visualize_gaze=True):
-        self.visualize_gaze = visualize_gaze
+    def __init__(self, draw_gaze=True):
+        self.draw_gaze = draw_gaze
         self.sensors = {}
         self.sensor_types = ["video", "gaze"]
         self.cv_bridge = CvBridge()
@@ -104,7 +104,7 @@ class GazeTracker:
             self.gaze_pub.publish(gaze_msg)
 
         if fpv_img is not None:
-            if self.visualize_gaze and gaze_point is not None:
+            if self.draw_gaze and gaze_point is not None:
                 cv2.circle(
                     fpv_img, (gaze_point.x, gaze_point.y), 40, (0, 0, 255), 4
                 )
@@ -122,7 +122,9 @@ class GazeTracker:
 if __name__ == "__main__":
     rospy.init_node("gaze_tracker_node")
     rate = rospy.Rate(10)
-    with GazeTracker(visualize_gaze=True) as tracker:
+
+    draw_gaze = rospy.get_param("~draw_gaze")
+    with GazeTracker(draw_gaze=draw_gaze) as tracker:
         while tracker.network.running and not rospy.is_shutdown():
             tracker.update()
             rate.sleep()
