@@ -9,5 +9,10 @@ Parameter `~draw_gaze` enables drawing of the gaze point on the fpv image.
 roslaunch icl_pupil_ros pupil.launch ns:=pupil draw_gaze:=true
 ```
 
-refs: [https://docs.pupil-labs.com/developer/invisible/#network-api](https://docs.pupil-labs.com/developer/invisible/#network-api) and [Gopika's script](https://github.com/intuitivecomputing/demo_data_processing/blob/master/scripts/gaze_data_pub.py)
+## Todo
+[] IMU if needed
+
+## refs
+- [Offical documents](https://docs.pupil-labs.com/developer/invisible/#network-api)
+- [Gopika's script](https://github.com/intuitivecomputing/demo_data_processing/blob/master/scripts/gaze_data_pub.py)
 
