@@ -6,7 +6,7 @@ Parameter `~draw_gaze` enables drawing of the gaze point on the fpv image.
 
 ## Usage
 ```
-roslaunch icl_pupil_ros pupil.launch ns:=pupil draw_gaze:=true
+roslaunch icl_pupil_ros pupil.launch draw_gaze:=true
 ```
 
 ## Todo
