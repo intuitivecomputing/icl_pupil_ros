@@ -10,7 +10,7 @@ roslaunch icl_pupil_ros pupil.launch ns:=pupil draw_gaze:=true
 ```
 
 ## Todo
-[] IMU if needed
+- [ ] IMU if needed
 
 ## refs
 - [Offical documents](https://docs.pupil-labs.com/developer/invisible/#network-api)
