@@ -66,7 +66,7 @@ class GazeTracker:
             rospy.loginfo(f"Removed sensor {event['sensor_uuid']}...")
 
     def update(self):
-        fpv_img = None  # np.zeros((1088, 1080, 3)) # 1088 x 1080 RGB image
+        fpv_img = None  # np.zeros((1088, 1080, 3))
         gaze_point = None  # (0, 0)
         # Check for recently connected/disconnected devices
         if self.network.has_events:
@@ -93,7 +93,6 @@ class GazeTracker:
                     fpv_img = data.bgr
 
                 elif sensor.name == "Gaze":
-                    # Draw gaze overlay onto world video frame
                     gaze_point = Point(int(data[0]), int(data[1]), 0.0)
 
         if gaze_point is not None:
@@ -105,6 +104,7 @@ class GazeTracker:
 
         if fpv_img is not None:
             if self.draw_gaze and gaze_point is not None:
+                # Draw gaze overlay onto world video frame
                 cv2.circle(
                     fpv_img, (gaze_point.x, gaze_point.y), 40, (0, 0, 255), 4
                 )
